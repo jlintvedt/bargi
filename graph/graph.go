@@ -40,6 +40,7 @@ type vertex struct {
 
 type vertexType int
 
+// TODO LOW: Change from typed to dynamic
 const (
 	person vertexType = iota
 	featPlace
@@ -56,6 +57,7 @@ type edge struct {
 
 type edgeType int
 
+// TODO LOW: Change from typed to dynamic
 const (
 	follows edgeType = iota
 	livesIn
