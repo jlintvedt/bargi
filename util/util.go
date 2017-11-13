@@ -1,17 +1,15 @@
 package util
 
 import (
-	"fmt"
 	"io/ioutil"
 	"os"
-)
 
-func Test() {
-	fmt.Println("Test")
-}
+	log "github.com/sirupsen/logrus"
+)
 
 type SnapLoader struct {
 	folderPath string
+	fileinfos  []os.FileInfo
 }
 
 // NewSnapLoader creates a new SnapLoader after validating input
@@ -23,16 +21,18 @@ func NewSnapLoader(path string) (*SnapLoader, error) {
 		return nil, err
 	}
 	s.folderPath = path
+	log.WithFields(log.Fields{"DataPath": s.folderPath}).Info()
 	// Load egonodes
-	files, err := ioutil.ReadDir(s.folderPath)
+	fileinfos, err := ioutil.ReadDir(s.folderPath)
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Println("Files: " + str(len(files)))
+	s.fileinfos = fileinfos
+	log.WithFields(log.Fields{"Files": len(s.fileinfos)}).Debug()
+	//
 	return s, nil
 }
 
 func (sn SnapLoader) Test() {
-	fmt.Println("SnapLoader test")
+	log.Info("SnapLoader Test")
 }

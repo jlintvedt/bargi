@@ -1,8 +1,9 @@
 package bargi
 
-import "github.com/jlintvedt/bargi/graph"
-
-import "fmt"
+import (
+	"github.com/jlintvedt/bargi/graph"
+	log "github.com/sirupsen/logrus"
+)
 
 type Node struct {
 	st *graph.Graph
@@ -16,6 +17,6 @@ func NewNode() *Node {
 }
 
 func (n Node) Test() {
-	fmt.Println("Node test")
+	log.Info("Node Test")
 	n.st.Test()
 }
