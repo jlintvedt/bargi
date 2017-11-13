@@ -8,7 +8,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-// SnapLoader TODO: Add documentation
+// SnapLoader TODO:WriteDoc
 type SnapLoader struct {
 	folderPath  string
 	fileinfos   []os.FileInfo
@@ -28,7 +28,7 @@ func NewSnapLoader(path string) (*SnapLoader, error) {
 		return nil, err
 	}
 	s.folderPath = path
-	log.WithFields(log.Fields{"DataPath": s.folderPath}).Info()
+	log.WithFields(log.Fields{"DataPath": s.folderPath}).Info("NewSnapLoader")
 	// Load egonodes
 	s.fileinfos, err = ioutil.ReadDir(s.folderPath)
 	if err != nil {
@@ -49,7 +49,11 @@ func NewSnapLoader(path string) (*SnapLoader, error) {
 		s.filenames[i] = f.Name()
 		log.WithFields(log.Fields{"Filename": s.filenames[i]}).Debug()
 	}
-	log.WithField("Egonodes", s.egonodes).Info()
+	log.WithField("Egonodes", s.egonodes).Info("NewSnapLoader Done")
 	//
 	return s, nil
+}
+
+func (s SnapLoader) Test() {
+	log.Info("SnapLoader Test")
 }
